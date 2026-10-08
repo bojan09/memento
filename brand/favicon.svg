@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+  <style>
+    .card { fill: #1E2433 } .fold { fill: #5A6275 } .ink { fill: #F7F5F0; stroke: #F7F5F0 } .recall { fill: #E8A33D }
+    @media (prefers-color-scheme: dark) {
+      .card { fill: #ECE8DF } .fold { fill: #9DA3B0 } .ink { fill: #161B26; stroke: #161B26 } .recall { fill: #F2B04A }
+    }
+  </style>
+  <path class="card" d="M5 2h10l6 6v12a2.5 2.5 0 0 1-2.5 2.5H5A2.5 2.5 0 0 1 2.5 20V4.5A2.5 2.5 0 0 1 5 2Z"/>
+  <path class="fold" d="M15 2v6h6Z"/>
+  <path class="ink" d="M7 17.5 11 11.5l5.5 3.5" stroke-width="1.75" style="fill:none" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle class="ink" cx="7" cy="17.5" r="1.75" stroke-width="0"/>
+  <circle class="ink" cx="16.5" cy="15" r="1.75" stroke-width="0"/>
+  <circle class="recall" cx="11" cy="11.5" r="3"/>
+</svg>

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" role="img" aria-label="Memento">
+  <!-- Full mark, use at >= 32px. Back card = memories behind; front card = saved page; thread = connection, amber node = recalled. -->
+  <rect x="10" y="4" width="30" height="36" rx="4" fill="#5A6275" transform="rotate(8 25 22)"/>
+  <path d="M10 8h20l8 8v24a4 4 0 0 1-4 4H10a4 4 0 0 1-4-4V12a4 4 0 0 1 4-4Z" fill="#1E2433"/>
+  <path d="M30 8v8h8Z" fill="#5A6275"/>
+  <path d="M14 34 22 22l9 7" stroke="#F7F5F0" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="14" cy="34" r="3" fill="#F7F5F0"/>
+  <circle cx="31" cy="29" r="3" fill="#F7F5F0"/>
+  <circle cx="22" cy="22" r="5" fill="#E8A33D"/>
+</svg>

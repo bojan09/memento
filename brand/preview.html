@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Memento Brand Preview</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root { --ink:#1E2433; --slate:#5A6275; --amber:#E8A33D; --paper:#F7F5F0; --line:#E4E0D6;
+          --night:#161B26; --cream:#ECE8DF; --mist:#9DA3B0; --amber-d:#F2B04A; }
+  * { box-sizing: border-box; }
+  body { margin:0; padding:32px 16px 64px; background:var(--paper); color:var(--ink); font:15px/1.5 Inter, system-ui, sans-serif; }
+  main { max-width:960px; margin:0 auto; display:grid; gap:40px; }
+  h2 { font:500 12px/1 Inter, sans-serif; text-transform:uppercase; letter-spacing:.08em; color:var(--slate); margin:0 0 16px; }
+  .panel { border-radius:16px; padding:24px; border:1px solid var(--line); background:#fff; }
+  .panel.dark { background:var(--night); border-color:#2A3142; color:var(--cream); }
+  .row { display:flex; flex-wrap:wrap; gap:20px; align-items:flex-end; }
+  .size { display:flex; flex-direction:column; align-items:center; }
+  .cap { font-size:12px; color:var(--slate); margin-top:6px; text-align:center; }
+  .dark .cap { color:var(--mist); }
+  .grid2 { display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:16px; }
+  .lockup { display:flex; align-items:center; gap:12px; }
+  .stacked { flex-direction:column; gap:10px; }
+  .wordmark { font:600 34px/1 Sora, sans-serif; letter-spacing:-0.035em; }
+  .wordmark.sm { font-size:20px; }
+  .swatches { display:grid; grid-template-columns:repeat(auto-fill, minmax(130px, 1fr)); gap:12px; }
+  .sw { border-radius:12px; overflow:hidden; border:1px solid var(--line); background:#fff; }
+  .sw div { height:56px; } .sw p { margin:0; padding:8px 10px; font-size:12px; } .sw b { display:block; font-weight:500; }
+  .tab { display:inline-flex; align-items:center; gap:8px; padding:8px 14px; border-radius:10px 10px 0 0; background:#fff; border:1px solid var(--line); border-bottom:0; font-size:13px; }
+  .tab.dark { background:#232A39; border-color:#2A3142; color:var(--cream); }
+  .gridbg { background-image:linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px); background-size:10px 10px; border:1px solid var(--line); }
+  ul { margin:0; padding-left:18px; max-width:440px; }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="full" viewBox="0 0 48 48">
+    <rect x="10" y="4" width="30" height="36" rx="4" fill="var(--c2)" transform="rotate(8 25 22)"/>
+    <path d="M10 8h20l8 8v24a4 4 0 0 1-4 4H10a4 4 0 0 1-4-4V12a4 4 0 0 1 4-4Z" fill="var(--c1)"/>
+    <path d="M30 8v8h8Z" fill="var(--c2)"/>
+    <path d="M14 34 22 22l9 7" stroke="var(--c3)" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="14" cy="34" r="3" fill="var(--c3)"/><circle cx="31" cy="29" r="3" fill="var(--c3)"/>
+    <circle cx="22" cy="22" r="5" fill="var(--c4)"/>
+  </symbol>
+  <symbol id="small" viewBox="0 0 24 24">
+    <path d="M5 2h10l6 6v12a2.5 2.5 0 0 1-2.5 2.5H5A2.5 2.5 0 0 1 2.5 20V4.5A2.5 2.5 0 0 1 5 2Z" fill="var(--c1)"/>
+    <path d="M15 2v6h6Z" fill="var(--c2)"/>
+    <path d="M7 17.5 11 11.5l5.5 3.5" stroke="var(--c3)" stroke-width="1.75" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="7" cy="17.5" r="1.75" fill="var(--c3)"/><circle cx="16.5" cy="15" r="1.75" fill="var(--c3)"/>
+    <circle cx="11" cy="11.5" r="3" fill="var(--c4)"/>
+  </symbol>
+</svg>
+<style>
+  .L { --c1:#1E2433; --c2:#5A6275; --c3:#F7F5F0; --c4:#E8A33D; }
+  .D { --c1:#ECE8DF; --c2:#9DA3B0; --c3:#161B26; --c4:#F2B04A; }
+  .app { background:var(--night); display:flex; align-items:center; justify-content:center; }
+</style>
+<main>
+  <header class="lockup L">
+    <svg width="48" height="48"><use href="#full"/></svg>
+    <div><div class="wordmark">memento</div><div style="color:var(--slate);margin-top:4px">Save anything. Forget nothing.</div></div>
+  </header>
+
+  <section>
+    <h2>Size ladder — small mark ≤ 24px, full mark ≥ 32px</h2>
+    <div class="grid2">
+      <div class="panel row L">
+        <div class="size"><svg width="16" height="16"><use href="#small"/></svg><span class="cap">16</span></div>
+        <div class="size"><svg width="24" height="24"><use href="#small"/></svg><span class="cap">24</span></div>
+        <div class="size"><svg width="32" height="32"><use href="#full"/></svg><span class="cap">32</span></div>
+        <div class="size"><svg width="48" height="48"><use href="#full"/></svg><span class="cap">48</span></div>
+        <div class="size"><svg width="96" height="96"><use href="#full"/></svg><span class="cap">96</span></div>
+      </div>
+      <div class="panel dark row D">
+        <div class="size"><svg width="16" height="16"><use href="#small"/></svg><span class="cap">16</span></div>
+        <div class="size"><svg width="24" height="24"><use href="#small"/></svg><span class="cap">24</span></div>
+        <div class="size"><svg width="32" height="32"><use href="#full"/></svg><span class="cap">32</span></div>
+        <div class="size"><svg width="48" height="48"><use href="#full"/></svg><span class="cap">48</span></div>
+        <div class="size"><svg width="96" height="96"><use href="#full"/></svg><span class="cap">96</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Anatomy — 48-unit grid</h2>
+    <div class="panel row L" style="gap:32px">
+      <div class="gridbg"><svg width="288" height="288"><use href="#full"/></svg></div>
+      <ul>
+        <li><b>Back card</b> (slate, +8°): everything else you've saved.</li>
+        <li><b>Front card</b> with folded corner: the thing you captured.</li>
+        <li><b>Thread</b>: Memento connecting it to other memories.</li>
+        <li><b>Amber node</b>: the recalled memory. Always the accent, never recoloured.</li>
+        <li>Small mark drops the back card and thickens the thread so it survives 16px.</li>
+        <li>Thread + nodes take the background colour (paper / night), so the card reads as one solid shape.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <h2>Contexts</h2>
+    <div class="grid2">
+      <div class="panel" style="display:grid;gap:12px">
+        <div><span class="tab L"><svg width="16" height="16"><use href="#small"/></svg> Memento — Inbox</span></div>
+        <div><span class="tab dark D"><svg width="16" height="16"><use href="#small"/></svg> Memento — Inbox</span></div>
+        <span class="cap" style="text-align:left">Browser tab, light + dark (favicon.svg switches automatically)</span>
+      </div>
+      <div class="panel row D" style="gap:24px">
+        <div class="size"><div class="app" style="width:72px;height:72px;border-radius:18px"><svg width="40" height="40"><use href="#full"/></svg></div><span class="cap">Home screen</span></div>
+        <div class="size"><div class="app" style="width:72px;height:72px;border-radius:50%"><svg width="40" height="40"><use href="#full"/></svg></div><span class="cap">Avatar / Android</span></div>
+        <div class="size"><div class="app" style="width:36px;height:36px;border-radius:9px"><svg width="22" height="22"><use href="#small"/></svg></div><span class="cap">Sidebar</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Wordmark &amp; lockups</h2>
+    <div class="grid2">
+      <div class="panel L" style="display:grid;gap:24px">
+        <div class="lockup"><svg width="40" height="40"><use href="#full"/></svg><span class="wordmark">memento</span></div>
+        <div class="lockup"><svg width="22" height="22"><use href="#small"/></svg><span class="wordmark sm">memento</span></div>
+        <div class="lockup stacked"><svg width="64" height="64"><use href="#full"/></svg><span class="wordmark">memento</span></div>
+      </div>
+      <div class="panel dark D" style="display:grid;gap:24px">
+        <div class="lockup"><svg width="40" height="40"><use href="#full"/></svg><span class="wordmark">memento</span></div>
+        <div class="lockup"><svg width="22" height="22"><use href="#small"/></svg><span class="wordmark sm">memento</span></div>
+        <div class="lockup stacked"><svg width="64" height="64"><use href="#full"/></svg><span class="wordmark">memento</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Brand colours (draft — full system next)</h2>
+    <div class="swatches">
+      <div class="sw"><div style="background:#1E2433"></div><p><b>Ink</b>#1E2433</p></div>
+      <div class="sw"><div style="background:#5A6275"></div><p><b>Slate</b>#5A6275</p></div>
+      <div class="sw"><div style="background:#E8A33D"></div><p><b>Recall Amber</b>#E8A33D</p></div>
+      <div class="sw"><div style="background:#F7F5F0"></div><p><b>Paper</b>#F7F5F0</p></div>
+      <div class="sw"><div style="background:#161B26"></div><p><b>Night</b>#161B26</p></div>
+      <div class="sw"><div style="background:#ECE8DF"></div><p><b>Cream</b>#ECE8DF</p></div>
+      <div class="sw"><div style="background:#9DA3B0"></div><p><b>Mist</b>#9DA3B0</p></div>
+      <div class="sw"><div style="background:#F2B04A"></div><p><b>Amber (dark)</b>#F2B04A</p></div>
+    </div>
+  </section>
+</main>
+</body>
+</html>
