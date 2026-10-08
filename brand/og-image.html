@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Memento OG image source</title>
+<!-- Source for og-image.png (1200x630). Re-render: node brand/render-assets.js -->
+<link rel="stylesheet" href="fonts/fonts.css">
+<style>
+  html, body { margin:0; }
+  body { width:1200px; height:630px; overflow:hidden; background:#F7F5F0; color:#1E2433; font-family:Inter, system-ui, sans-serif; position:relative; }
+  .wrap { position:absolute; inset:0; padding:88px 96px; display:flex; flex-direction:column; justify-content:space-between; }
+  .lockup { display:flex; align-items:center; gap:22px; }
+  .wordmark { font:600 64px/1 Sora, sans-serif; letter-spacing:-0.035em; }
+  h1 { margin:0; max-width:900px; text-wrap:balance; font:600 68px/1.06 Sora, sans-serif; letter-spacing:-0.035em; }
+  h1 em { font-style:normal; color:#5A6275; }
+  .foot { display:flex; align-items:center; gap:14px; font-size:24px; color:#5A6275; }
+  .dot { width:14px; height:14px; border-radius:50%; background:#E8A33D; }
+  /* thread motif, bottom right: line-and-node, amber node = recalled */
+  .motif { position:absolute; right:-40px; bottom:-60px; opacity:.9; }
+</style>
+</head>
+<body>
+  <svg class="motif" width="560" height="460" viewBox="0 0 560 460" aria-hidden="true">
+    <path d="M60 400 220 180l200 120 120-200" stroke="#E4E0D6" stroke-width="10" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="60" cy="400" r="22" fill="#E4E0D6"/>
+    <circle cx="420" cy="300" r="22" fill="#E4E0D6"/>
+    <circle cx="540" cy="100" r="22" fill="#E4E0D6"/>
+    <circle cx="220" cy="180" r="34" fill="#E8A33D"/>
+  </svg>
+  <div class="wrap">
+    <div class="lockup">
+      <svg width="88" height="88" viewBox="0 0 48 48" aria-hidden="true">
+        <rect x="10" y="4" width="30" height="36" rx="4" fill="#5A6275" transform="rotate(8 25 22)"/>
+        <path d="M10 8h20l8 8v24a4 4 0 0 1-4 4H10a4 4 0 0 1-4-4V12a4 4 0 0 1 4-4Z" fill="#1E2433"/>
+        <path d="M30 8v8h8Z" fill="#5A6275"/>
+        <path d="M14 34 22 22l9 7" stroke="#F7F5F0" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="14" cy="34" r="3" fill="#F7F5F0"/>
+        <circle cx="31" cy="29" r="3" fill="#F7F5F0"/>
+        <circle cx="22" cy="22" r="5" fill="#E8A33D"/>
+      </svg>
+      <span class="wordmark">memento</span>
+    </div>
+    <h1>Capture now. <em>The system figures out the rest.</em></h1>
+    <div class="foot"><span class="dot"></span>Save links, notes and screenshots. Find them when they matter.</div>
+  </div>
+</body>
+</html>

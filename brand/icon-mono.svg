@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" role="img" aria-label="Memento">
+  <!-- One-colour full mark (>= 32px): single-ink print, embossing, stamps. Fill follows currentColor.
+       A 2-unit gap separates the back card; thread, nodes and fold are knocked out; the recalled node is a ring. -->
+  <mask id="back" maskUnits="userSpaceOnUse" x="0" y="0" width="48" height="48">
+    <rect x="10" y="4" width="30" height="36" rx="4" fill="#fff" transform="rotate(8 25 22)"/>
+    <path d="M10 8h20l8 8v24a4 4 0 0 1-4 4H10a4 4 0 0 1-4-4V12a4 4 0 0 1 4-4Z" fill="#000" stroke="#000" stroke-width="4" stroke-linejoin="round"/>
+  </mask>
+  <mask id="front" maskUnits="userSpaceOnUse" x="0" y="0" width="48" height="48">
+    <path d="M10 8h20l8 8v24a4 4 0 0 1-4 4H10a4 4 0 0 1-4-4V12a4 4 0 0 1 4-4Z" fill="#fff"/>
+    <path d="M30 8v8h8" stroke="#000" stroke-width="2" fill="none" stroke-linejoin="round"/>
+    <path d="M14 34 22 22l9 7" stroke="#000" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="14" cy="34" r="3" fill="#000"/>
+    <circle cx="31" cy="29" r="3" fill="#000"/>
+    <circle cx="22" cy="22" r="5" fill="#000"/>
+    <circle cx="22" cy="22" r="2.25" fill="#fff"/>
+  </mask>
+  <rect width="48" height="48" fill="currentColor" mask="url(#back)"/>
+  <rect width="48" height="48" fill="currentColor" mask="url(#front)"/>
+</svg>
