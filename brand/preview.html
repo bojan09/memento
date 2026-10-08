@@ -4,27 +4,31 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Memento Brand Preview</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preload" href="fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/sora-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="fonts/fonts.css">
 <style>
   :root { --ink:#1E2433; --slate:#5A6275; --amber:#E8A33D; --paper:#F7F5F0; --line:#E4E0D6;
           --night:#161B26; --cream:#ECE8DF; --mist:#9DA3B0; --amber-d:#F2B04A; }
   * { box-sizing: border-box; }
   body { margin:0; padding:32px 16px 64px; background:var(--paper); color:var(--ink); font:15px/1.5 Inter, system-ui, sans-serif; }
   main { max-width:960px; margin:0 auto; display:grid; gap:40px; }
+  main > *, .panel > * { min-width:0; }
   h2 { font:500 12px/1 Inter, sans-serif; text-transform:uppercase; letter-spacing:.08em; color:var(--slate); margin:0 0 16px; }
   .panel { border-radius:16px; padding:24px; border:1px solid var(--line); background:#fff; }
   .panel.dark { background:var(--night); border-color:#2A3142; color:var(--cream); }
   .row { display:flex; flex-wrap:wrap; gap:20px; align-items:flex-end; }
   .size { display:flex; flex-direction:column; align-items:center; }
+  a.size { text-decoration:none; color:inherit; }
   .cap { font-size:12px; color:var(--slate); margin-top:6px; text-align:center; }
   .dark .cap { color:var(--mist); }
-  .grid2 { display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:16px; }
+  .grid2 { display:grid; grid-template-columns:repeat(auto-fit, minmax(min(280px, 100%), 1fr)); gap:16px; }
   .lockup { display:flex; align-items:center; gap:12px; }
   .stacked { flex-direction:column; gap:10px; }
   .wordmark { font:600 34px/1 Sora, sans-serif; letter-spacing:-0.035em; }
   .wordmark.sm { font-size:20px; }
-  .swatches { display:grid; grid-template-columns:repeat(auto-fill, minmax(130px, 1fr)); gap:12px; }
+  .swatches { display:grid; grid-template-columns:repeat(auto-fill, minmax(min(130px, 100%), 1fr)); gap:12px; }
   .sw { border-radius:12px; overflow:hidden; border:1px solid var(--line); background:#fff; }
   .sw div { height:56px; } .sw p { margin:0; padding:8px 10px; font-size:12px; } .sw b { display:block; font-weight:500; }
   .tab { display:inline-flex; align-items:center; gap:8px; padding:8px 14px; border-radius:10px 10px 0 0; background:#fff; border:1px solid var(--line); border-bottom:0; font-size:13px; }
@@ -85,7 +89,7 @@
   <section>
     <h2>Anatomy — 48-unit grid</h2>
     <div class="panel row L" style="gap:32px">
-      <div class="gridbg"><svg width="288" height="288"><use href="#full"/></svg></div>
+      <div class="gridbg" style="max-width:290px"><svg width="288" height="288" viewBox="0 0 288 288" style="display:block;max-width:100%;height:auto"><use href="#full"/></svg></div>
       <ul>
         <li><b>Back card</b> (slate, +8°): everything else you've saved.</li>
         <li><b>Front card</b> with folded corner: the thing you captured.</li>
@@ -126,6 +130,27 @@
         <div class="lockup"><svg width="22" height="22"><use href="#small"/></svg><span class="wordmark sm">memento</span></div>
         <div class="lockup stacked"><svg width="64" height="64"><use href="#full"/></svg><span class="wordmark">memento</span></div>
       </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>App icons &amp; downloads</h2>
+    <div class="grid2">
+      <div class="panel row" style="gap:24px">
+        <a class="size" href="apple-touch-icon.png" download><img src="apple-touch-icon.png" width="72" height="72" alt="" style="border-radius:16px"><span class="cap">apple-touch-icon.png<br>180 · opaque</span></a>
+        <a class="size" href="icon-192.png" download><img src="icon-192.png" width="72" height="72" alt=""><span class="cap">icon-192.png<br>any</span></a>
+        <a class="size" href="icon-512.png" download><img src="icon-512.png" width="72" height="72" alt=""><span class="cap">icon-512.png<br>any</span></a>
+        <a class="size" href="icon-maskable-512.png" download><img src="icon-maskable-512.png" width="72" height="72" alt="" style="border-radius:50%"><span class="cap">icon-maskable-512.png<br>maskable</span></a>
+      </div>
+      <div class="panel row" style="gap:24px">
+        <a class="size" href="icon-mono-small.svg" download><img src="icon-mono-small.svg" width="24" height="24" alt=""><span class="cap">icon-mono-small.svg<br>badge ≤ 24px</span></a>
+        <a class="size" href="icon-mono.svg" download><img src="icon-mono.svg" width="64" height="64" alt=""><span class="cap">icon-mono.svg<br>one colour ≥ 32px</span></a>
+        <span class="cap" style="text-align:left;max-width:200px">Fill follows <code>currentColor</code>. The recalled node becomes a ring, because amber isn't available in one colour.</span>
+      </div>
+    </div>
+    <div class="panel" style="margin-top:16px;display:grid;gap:12px">
+      <a href="og-image.png" download><img src="og-image.png" width="1200" height="630" alt="Social preview: memento, Capture now. The system figures out the rest." style="width:100%;height:auto;border-radius:10px;border:1px solid var(--line);display:block"></a>
+      <span class="cap" style="text-align:left">og-image.png · 1200×630 · source og-image.html · re-render all PNGs with <code>node brand/render-assets.js</code></span>
     </div>
   </section>
 

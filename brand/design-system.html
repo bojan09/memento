@@ -5,10 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Memento Design System</title>
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<!-- Demo only. The app will self-host subsetted woff2 files (no third-party font request). -->
-<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preload" href="fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/sora-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="fonts/fonts.css">
 <style>
 /* =========================================================
    1. TOKENS
@@ -104,21 +104,24 @@ button { font:inherit; color:inherit; }
   backdrop-filter:saturate(1.4) blur(10px); -webkit-backdrop-filter:saturate(1.4) blur(10px);
   border-bottom:1px solid var(--border);
 }
+@media (max-width:640px) { .topbar { position:static; } }
 .topbar-inner { max-width:1120px; margin:0 auto; padding:12px 16px; display:flex; flex-wrap:wrap; gap:12px; align-items:center; justify-content:space-between; }
-.lockup { display:flex; align-items:center; gap:10px; text-decoration:none; }
+.lockup { display:flex; flex-wrap:wrap; align-items:center; gap:10px; text-decoration:none; }
 .wordmark { font:600 20px/1 var(--font-display); letter-spacing:-0.035em; }
 .wordmark.lg { font-size:34px; }
 .controls { display:flex; flex-wrap:wrap; gap:8px; align-items:center; }
 main { max-width:1120px; margin:0 auto; padding:32px 16px 96px; display:grid; gap:56px; }
+main > * { min-width:0; }
 section { display:grid; gap:16px; scroll-margin-top:80px; }
+section > * { min-width:0; }
 .eyebrow { font:600 12px/1 var(--font-ui); text-transform:uppercase; letter-spacing:.08em; color:var(--muted); }
 .section-head { display:grid; gap:6px; }
 .section-head h2 { font-size:24px; }
 .section-head p { color:var(--muted); max-width:68ch; }
 .panel { background:var(--surface); border:1px solid var(--border); border-radius:var(--r-lg); padding:24px; }
 .grid { display:grid; gap:16px; }
-.g2 { grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); }
-.g3 { grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); }
+.g2 { grid-template-columns:repeat(auto-fit, minmax(min(300px, 100%), 1fr)); }
+.g3 { grid-template-columns:repeat(auto-fit, minmax(min(260px, 100%), 1fr)); }
 .row { display:flex; flex-wrap:wrap; gap:12px; align-items:center; }
 .stack { display:grid; gap:12px; }
 .note { font-size:13px; color:var(--muted); }
@@ -130,7 +133,7 @@ section { display:grid; gap:16px; scroll-margin-top:80px; }
 .hero { display:grid; gap:20px; padding:8px 0 0; }
 .hero h1 { font-size:clamp(32px, 6vw, 48px); line-height:1.08; letter-spacing:-0.035em; max-width:18ch; }
 .hero p { color:var(--muted); font-size:17px; max-width:60ch; }
-.principles { display:grid; grid-template-columns:repeat(auto-fit, minmax(220px,1fr)); gap:12px; }
+.principles { display:grid; grid-template-columns:repeat(auto-fit, minmax(min(220px, 100%), 1fr)); gap:12px; }
 .principle { padding:16px; border-radius:var(--r-lg); background:var(--surface); border:1px solid var(--border); }
 .principle b { display:block; font:600 14px var(--font-display); margin-bottom:4px; }
 .principle span { font-size:13px; color:var(--muted); }
@@ -314,10 +317,11 @@ textarea.input { resize:vertical; min-height:88px; line-height:1.5; }
 
 /* ask */
 .ask { display:grid; gap:16px; }
+.ask > * { min-width:0; }
 .ask-q { justify-self:end; max-width:min(80%, 520px); padding:10px 14px; border-radius:16px 16px 4px 16px; background:var(--primary); color:var(--on-primary); font-size:15px; }
 .ask-block { display:grid; gap:10px; padding:16px; border-radius:var(--r-lg); background:var(--surface); border:1px solid var(--border); }
 .ask-block.inferred { background:transparent; border-style:dashed; border-color:var(--border-strong); }
-.ask-label { display:flex; align-items:center; gap:8px; font-size:12px; font-weight:600; text-transform:uppercase; letter-spacing:.06em; color:var(--muted); }
+.ask-label { display:flex; flex-wrap:wrap; align-items:center; gap:8px; font-size:12px; font-weight:600; text-transform:uppercase; letter-spacing:.06em; color:var(--muted); }
 .cite {
   display:inline-grid; place-items:center; min-width:20px; height:20px; padding:0 5px; margin:0 1px;
   border-radius:6px; font-size:11px; font-weight:600; text-decoration:none; vertical-align:1px;
@@ -325,13 +329,13 @@ textarea.input { resize:vertical; min-height:88px; line-height:1.5; }
 }
 .cite:hover { outline:1px solid var(--recall); }
 .sources { display:grid; gap:8px; }
-.source { display:flex; gap:10px; align-items:center; padding:8px 10px; border-radius:var(--r-md); background:var(--bg); font-size:13px; text-decoration:none; }
+.source { display:flex; flex-wrap:wrap; gap:4px 10px; align-items:center; padding:8px 10px; border-radius:var(--r-md); background:var(--bg); font-size:13px; text-decoration:none; }
 .source .cite { flex:none; }
 .source span:last-child { color:var(--muted); margin-left:auto; white-space:nowrap; }
 .not-found { display:flex; gap:10px; align-items:flex-start; font-size:14px; color:var(--muted); padding:12px 14px; border-radius:var(--r-md); background:var(--sunken); }
 
 /* app shell mock (desktop) */
-.shell { display:grid; grid-template-columns:232px 1fr; min-height:480px; border:1px solid var(--border); border-radius:var(--r-lg); overflow:hidden; background:var(--bg); }
+.shell { display:grid; grid-template-columns:232px minmax(0, 1fr); min-height:480px; border:1px solid var(--border); border-radius:var(--r-lg); overflow:hidden; background:var(--bg); }
 .side { background:var(--surface); border-right:1px solid var(--border); padding:16px 12px; display:flex; flex-direction:column; gap:16px; }
 .side .lockup { padding:4px 8px; }
 .nav { display:grid; gap:2px; }
@@ -346,27 +350,32 @@ textarea.input { resize:vertical; min-height:88px; line-height:1.5; }
 .nav-title { font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:.08em; color:var(--muted); padding:8px 10px 4px; }
 .proj-dot { width:8px; height:8px; border-radius:3px; flex:none; }
 .content { padding:20px; display:grid; gap:16px; align-content:start; min-width:0; }
+.content > * { min-width:0; }
 .searchbar {
   display:flex; align-items:center; gap:10px; height:44px; padding:0 12px; width:100%;
   border-radius:var(--r-md); border:1px solid var(--border); background:var(--surface); color:var(--muted);
   cursor:pointer; text-align:left; font-size:14px;
 }
 .searchbar:hover { border-color:var(--border-strong); }
-.searchbar .kbd { margin-left:auto; }
-.cards3 { display:grid; grid-template-columns:repeat(auto-fill, minmax(220px,1fr)); gap:12px; }
-@media (max-width:760px) { .shell { grid-template-columns:1fr; } .side { display:none; } }
+.searchbar .kbd { margin-left:auto; flex:none; }
+.searchbar svg { flex:none; }
+.searchbar-text { min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.cards3 { display:grid; grid-template-columns:repeat(auto-fill, minmax(min(220px, 100%), 1fr)); gap:12px; }
+@media (max-width:760px) { .shell { grid-template-columns:minmax(0, 1fr); } .side { display:none; } }
 
 /* phone mock */
 .phone-wrap { display:flex; flex-wrap:wrap; gap:24px; align-items:flex-start; }
+.phone-wrap > * { min-width:0; }
 .phone {
-  width:340px; max-width:100%; height:680px; border-radius:40px; padding:10px;
-  background:var(--text); box-shadow:var(--shadow-2); flex:none;
+  width:340px; max-width:100%; min-width:0; height:680px; border-radius:40px; padding:10px;
+  background:var(--text); box-shadow:var(--shadow-2); flex:0 1 340px;
 }
 .screen { position:relative; height:100%; border-radius:31px; overflow:hidden; background:var(--bg); display:flex; flex-direction:column; }
 .screen-top { display:flex; align-items:center; justify-content:space-between; padding:18px 18px 10px; }
 .screen-top h3 { font-size:22px; }
 .avatar { width:32px; height:32px; border-radius:50%; background:var(--sunken); display:grid; place-items:center; font-size:12px; font-weight:600; color:var(--muted); }
-.screen-body { flex:1; overflow:auto; padding:4px 14px 96px; display:grid; gap:10px; align-content:start; }
+.screen-body { flex:1; overflow:auto; padding:4px 14px 96px; display:grid; grid-auto-rows:max-content; gap:10px; align-content:start; }
+.screen-body > *, .mini > * { min-width:0; }
 .mini { display:flex; gap:10px; align-items:flex-start; padding:12px; border-radius:14px; background:var(--surface); border:1px solid var(--border); }
 .mini b { display:block; font:600 14px/1.35 var(--font-display); letter-spacing:-0.01em; }
 .mini small { color:var(--muted); font-size:12px; }
@@ -475,7 +484,7 @@ dialog[open]::backdrop { animation:fade var(--dur-3) var(--ease); }
 .toast svg { --mark-1:var(--bg); --mark-2:color-mix(in srgb, var(--bg) 55%, var(--text)); --mark-3:var(--text); }
 
 /* tokens + contrast */
-.swatches { display:grid; grid-template-columns:repeat(auto-fill, minmax(150px, 1fr)); gap:12px; }
+.swatches { display:grid; grid-template-columns:repeat(auto-fill, minmax(min(150px, 100%), 1fr)); gap:12px; }
 .sw { border-radius:12px; overflow:hidden; border:1px solid var(--border); background:var(--surface); }
 .sw .chipc { height:56px; border-bottom:1px solid var(--border); }
 .sw p { padding:8px 10px; font-size:12px; display:grid; gap:2px; }
@@ -923,7 +932,7 @@ html.rm .rm-note { display:block; }
         </nav>
       </aside>
       <div class="content">
-        <button class="searchbar" type="button" data-open-palette><svg class="icon" aria-hidden="true"><use href="#i-search"/></svg>Search or ask "what did I save about…"<span class="kbd">Ctrl K</span></button>
+        <button class="searchbar" type="button" data-open-palette><svg class="icon" aria-hidden="true"><use href="#i-search"/></svg><span class="searchbar-text">Search or ask "what did I save about…"</span><span class="kbd">Ctrl K</span></button>
         <div class="row" style="justify-content:space-between"><h2 style="font-size:20px">Memories</h2><span class="note mono">This week · 12</span></div>
         <div class="cards3">
           <article class="mcard interactive"><div class="mcard-head"><span class="kind"><svg class="icon" aria-hidden="true"><use href="#i-link"/></svg></span><span class="mcard-src">figma.com</span><time class="mcard-time mono">2 d</time></div><h3>How Figma's multiplayer works</h3><div class="tags"><span class="tag">realtime</span></div></article>
