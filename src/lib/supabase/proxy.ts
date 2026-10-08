@@ -2,6 +2,7 @@ import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
 import { SUPABASE_PUBLISHABLE_KEY, SUPABASE_URL } from "@/lib/env";
 
+// "/" (landing) is matched exactly; the rest also cover their sub-paths.
 const PUBLIC_PATHS = ["/login", "/api/cron"];
 
 // Refreshes the auth session on every request and sends signed-out visitors to /login.
@@ -26,10 +27,10 @@ export async function updateSession(request: NextRequest) {
   const { data } = await supabase.auth.getClaims();
   const signedIn = Boolean(data?.claims);
   const path = request.nextUrl.pathname;
-  const isPublic = PUBLIC_PATHS.some((p) => path === p || path.startsWith(`${p}/`));
+  const isPublic = path === "/" || PUBLIC_PATHS.some((p) => path === p || path.startsWith(`${p}/`));
 
   if (!signedIn && !isPublic) return redirectKeepingCookies(request, response, "/login");
-  if (signedIn && path === "/login") return redirectKeepingCookies(request, response, "/");
+  if (signedIn && (path === "/" || path === "/login")) return redirectKeepingCookies(request, response, "/memories");
   return response;
 }
 

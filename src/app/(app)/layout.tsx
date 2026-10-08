@@ -8,7 +8,7 @@ export default function AppLayout({ children }: LayoutProps<"/">) {
   return (
     <div className="app">
       <aside className="side">
-        <Link href="/" className="lockup">
+        <Link href="/memories" className="lockup">
           <Logo size={24} />
           <span className="wordmark" style={{ fontSize: 18 }}>memento</span>
         </Link>
@@ -26,7 +26,7 @@ export default function AppLayout({ children }: LayoutProps<"/">) {
       </aside>
       <div className="main">
         <header className="topbar">
-          <Link href="/" className="lockup">
+          <Link href="/memories" className="lockup">
             <Logo size={24} />
             <span className="wordmark" style={{ fontSize: 18 }}>memento</span>
           </Link>

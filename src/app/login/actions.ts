@@ -39,7 +39,7 @@ async function verifyCode(_prev: LoginState, formData: FormData): Promise<LoginS
   const { error } = await supabase.auth.verifyOtp({ email, token, type: "email" });
   if (error) return { step: "code", email, error: "That code didn't work. It may have expired, so request a new one." };
 
-  redirect("/");
+  redirect("/memories");
 }
 
 // Single entry point for the form: the pressed button's `intent` picks the step.

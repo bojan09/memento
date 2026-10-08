@@ -7,14 +7,14 @@ import { FolderClosed, Layers, MessageCircleQuestionMark, Plus, Search, type Luc
 type Item = { href: string; label: string; icon: LucideIcon };
 
 export const NAV_ITEMS: Item[] = [
-  { href: "/", label: "Memories", icon: Layers },
+  { href: "/memories", label: "Memories", icon: Layers },
   { href: "/search", label: "Search", icon: Search },
   { href: "/ask", label: "Ask", icon: MessageCircleQuestionMark },
   { href: "/projects", label: "Projects", icon: FolderClosed },
 ];
 
 function isActive(pathname: string, href: string) {
-  return href === "/" ? pathname === "/" : pathname === href || pathname.startsWith(`${href}/`);
+  return pathname === href || pathname.startsWith(`${href}/`);
 }
 
 export function SideNav() {
