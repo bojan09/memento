@@ -4,7 +4,7 @@ export default function manifest(): MetadataRoute.Manifest {
   return {
     name: "memento",
     short_name: "memento",
-    description: "Capture now. The system figures out the rest.",
+    description: "Capture now. Find it when it matters.",
     start_url: "/memories",
     scope: "/",
     display: "standalone",

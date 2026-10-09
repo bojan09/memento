@@ -9,12 +9,12 @@ const siteUrl = process.env.VERCEL_PROJECT_PRODUCTION_URL
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: { default: "memento", template: "%s · memento" },
-  description: "Capture now. The system figures out the rest.",
+  description: "Capture now. Find it when it matters.",
   applicationName: "memento",
   appleWebApp: { capable: true, title: "memento", statusBarStyle: "default" },
   formatDetection: { telephone: false },
   robots: { index: false, follow: false },
-  openGraph: { title: "memento", description: "Capture now. The system figures out the rest.", images: "/og-image.png" },
+  openGraph: { title: "memento", description: "Capture now. Find it when it matters.", images: "/og-image.png" },
 };
 
 export const viewport: Viewport = {
