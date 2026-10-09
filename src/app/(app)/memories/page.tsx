@@ -1,33 +1,21 @@
-import Link from "next/link";
-import { Plus } from "lucide-react";
-import { EmptyState } from "@/components/empty-state";
-import { createClient } from "@/lib/supabase/server";
+import type { Metadata } from "next";
+import { MemoriesView } from "@/components/views/memories-view";
+import { listMemories } from "@/lib/data";
+import { parseFeedParams } from "@/lib/filters";
 
-export default async function MemoriesPage() {
-  const supabase = await createClient();
-  const { count, error } = await supabase.from("memories").select("id", { count: "exact", head: true });
+export const metadata: Metadata = { title: "Memories" };
 
+export default async function MemoriesPage(props: PageProps<"/memories">) {
+  const filters = parseFeedParams(await props.searchParams);
+  const { memories, nextCursor } = await listMemories(filters);
+  const unfiltered = filters.kind === "all" && !filters.projectId && !filters.before;
   return (
-    <>
-      <div className="page-head">
-        <h1>Memories</h1>
-        {!error && count ? <span className="help mono">{count.toLocaleString("en")} saved</span> : null}
-      </div>
-      {error ? (
-        <div className="banner error" role="alert">Couldn&apos;t load your memories. Refresh to try again.</div>
-      ) : (
-        <EmptyState
-          title="Nothing here yet"
-          action={
-            <Link href="/capture" className="btn btn-primary">
-              <Plus className="icon" aria-hidden />
-              Capture
-            </Link>
-          }
-        >
-          Paste a link, drop a screenshot, or jot a thought.
-        </EmptyState>
-      )}
-    </>
+    <MemoriesView
+      memories={memories}
+      kind={filters.kind}
+      projectId={filters.projectId}
+      nextCursor={nextCursor}
+      totalEmpty={unfiltered && memories.length === 0}
+    />
   );
 }

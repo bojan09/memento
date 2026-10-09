@@ -3,15 +3,16 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { FolderClosed, Layers, Plus, Search, Settings, type LucideIcon } from "lucide-react";
+import { useHref } from "@/components/app/app-context";
 import { useCapture } from "@/components/capture/capture-provider";
 
-type Item = { href: string; label: string; icon: LucideIcon };
+type Item = { path: string; label: string; icon: LucideIcon };
 
 export const NAV_ITEMS: Item[] = [
-  { href: "/memories", label: "Memories", icon: Layers },
-  { href: "/search", label: "Search", icon: Search },
-  { href: "/projects", label: "Projects", icon: FolderClosed },
-  { href: "/settings", label: "Settings", icon: Settings },
+  { path: "/memories", label: "Memories", icon: Layers },
+  { path: "/search", label: "Search", icon: Search },
+  { path: "/projects", label: "Projects", icon: FolderClosed },
+  { path: "/settings", label: "Settings", icon: Settings },
 ];
 
 function isActive(pathname: string, href: string) {
@@ -20,10 +21,11 @@ function isActive(pathname: string, href: string) {
 
 export function SideNav() {
   const pathname = usePathname();
+  const href = useHref();
   return (
     <nav className="nav" aria-label="Main">
-      {NAV_ITEMS.map(({ href, label, icon: Icon }) => (
-        <Link key={href} href={href} aria-current={isActive(pathname, href) ? "page" : undefined}>
+      {NAV_ITEMS.map(({ path, label, icon: Icon }) => (
+        <Link key={path} href={href(path)} aria-current={isActive(pathname, href(path)) ? "page" : undefined}>
           <Icon className="icon" aria-hidden />
           {label}
         </Link>
@@ -44,9 +46,10 @@ export function CaptureButton({ className, children }: { className?: string; chi
 // Mobile: Memories, Search, [Capture], Projects, Settings. Capture sits in the thumb zone.
 export function TabBar() {
   const pathname = usePathname();
+  const href = useHref();
   const [memories, search, projects, settings] = NAV_ITEMS;
-  const tab = ({ href, label, icon: Icon }: Item) => (
-    <Link key={href} href={href} className="tab-item" aria-current={isActive(pathname, href) ? "page" : undefined}>
+  const tab = ({ path, label, icon: Icon }: Item) => (
+    <Link key={path} href={href(path)} className="tab-item" aria-current={isActive(pathname, href(path)) ? "page" : undefined}>
       <Icon className="icon" aria-hidden />
       {label}
     </Link>

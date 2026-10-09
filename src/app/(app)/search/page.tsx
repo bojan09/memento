@@ -1,15 +1,12 @@
 import type { Metadata } from "next";
-import { EmptyState } from "@/components/empty-state";
+import { SearchView } from "@/components/views/search-view";
+import { searchMemories } from "@/lib/data";
+import { queryParam } from "@/lib/filters";
 
 export const metadata: Metadata = { title: "Search" };
 
-export default function SearchPage() {
-  return (
-    <>
-      <div className="page-head">
-        <h1>Search</h1>
-      </div>
-      <EmptyState title="Not built yet">Search and ⌘K arrive with Phase 3, once memories have text to search.</EmptyState>
-    </>
-  );
+export default async function SearchPage(props: PageProps<"/search">) {
+  const q = queryParam(await props.searchParams, "q").trim();
+  const results = q ? await searchMemories(q) : [];
+  return <SearchView key={q} query={q} results={results} />;
 }

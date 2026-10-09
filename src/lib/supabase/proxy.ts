@@ -3,7 +3,7 @@ import { NextResponse, type NextRequest } from "next/server";
 import { SUPABASE_PUBLISHABLE_KEY, SUPABASE_URL } from "@/lib/env";
 
 // "/" (landing) is matched exactly; the rest also cover their sub-paths.
-const PUBLIC_PATHS = ["/login", "/offline", "/api/cron"];
+const PUBLIC_PATHS = ["/login", "/offline", "/demo", "/api/cron"];
 
 // Refreshes the auth session on every request and sends signed-out visitors to /login.
 export async function updateSession(request: NextRequest) {

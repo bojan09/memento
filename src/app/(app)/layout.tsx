@@ -1,38 +1,14 @@
-import Link from "next/link";
-import { Plus } from "lucide-react";
-import { CaptureProvider } from "@/components/capture/capture-provider";
-import { Logo } from "@/components/logo";
-import { CaptureButton, SideNav, TabBar } from "@/components/nav";
-import { ToastProvider } from "@/components/toast";
+import { AppShell } from "@/components/app/app-shell";
+import { LiveAppProvider } from "@/components/app/live-provider";
+import { requireUser } from "@/lib/auth";
+import { listProjects } from "@/lib/data";
 
-export default function AppLayout({ children }: LayoutProps<"/">) {
+export default async function AppLayout({ children }: LayoutProps<"/">) {
+  const user = await requireUser();
+  const projects = await listProjects();
   return (
-    <ToastProvider>
-      <CaptureProvider>
-        <div className="app">
-          <aside className="side">
-            <Link href="/memories" className="lockup">
-              <Logo size={24} />
-              <span className="wordmark" style={{ fontSize: 18 }}>memento</span>
-            </Link>
-            <CaptureButton className="btn btn-primary side-capture">
-              <Plus className="icon" aria-hidden />
-              Capture
-            </CaptureButton>
-            <SideNav />
-          </aside>
-          <div className="main">
-            <header className="topbar">
-              <Link href="/memories" className="lockup">
-                <Logo size={24} />
-                <span className="wordmark" style={{ fontSize: 18 }}>memento</span>
-              </Link>
-            </header>
-            <main className="content">{children}</main>
-          </div>
-          <TabBar />
-        </div>
-      </CaptureProvider>
-    </ToastProvider>
+    <LiveAppProvider userId={user.id} projects={projects}>
+      <AppShell>{children}</AppShell>
+    </LiveAppProvider>
   );
 }
