@@ -2,15 +2,16 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { FolderClosed, Layers, MessageCircleQuestionMark, Plus, Search, type LucideIcon } from "lucide-react";
+import { FolderClosed, Layers, Plus, Search, Settings, type LucideIcon } from "lucide-react";
+import { useCapture } from "@/components/capture/capture-provider";
 
 type Item = { href: string; label: string; icon: LucideIcon };
 
 export const NAV_ITEMS: Item[] = [
   { href: "/memories", label: "Memories", icon: Layers },
   { href: "/search", label: "Search", icon: Search },
-  { href: "/ask", label: "Ask", icon: MessageCircleQuestionMark },
   { href: "/projects", label: "Projects", icon: FolderClosed },
+  { href: "/settings", label: "Settings", icon: Settings },
 ];
 
 function isActive(pathname: string, href: string) {
@@ -31,10 +32,19 @@ export function SideNav() {
   );
 }
 
-// Mobile: Memories, Search, [Capture], Ask, Projects. Capture sits in the thumb zone.
+export function CaptureButton({ className, children }: { className?: string; children?: React.ReactNode }) {
+  const { open } = useCapture();
+  return (
+    <button type="button" className={className} onClick={() => open()} aria-label={children ? undefined : "Capture"}>
+      {children ?? <Plus width={24} height={24} strokeWidth={2} aria-hidden />}
+    </button>
+  );
+}
+
+// Mobile: Memories, Search, [Capture], Projects, Settings. Capture sits in the thumb zone.
 export function TabBar() {
   const pathname = usePathname();
-  const [memories, search, ask, projects] = NAV_ITEMS;
+  const [memories, search, projects, settings] = NAV_ITEMS;
   const tab = ({ href, label, icon: Icon }: Item) => (
     <Link key={href} href={href} className="tab-item" aria-current={isActive(pathname, href) ? "page" : undefined}>
       <Icon className="icon" aria-hidden />
@@ -45,11 +55,9 @@ export function TabBar() {
     <nav className="tabbar" aria-label="Main">
       {tab(memories)}
       {tab(search)}
-      <Link href="/capture" className="tab-capture" aria-label="Capture">
-        <Plus width={24} height={24} strokeWidth={2} aria-hidden />
-      </Link>
-      {tab(ask)}
+      <CaptureButton className="tab-capture" />
       {tab(projects)}
+      {tab(settings)}
     </nav>
   );
 }

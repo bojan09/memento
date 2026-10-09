@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import { ServiceWorker } from "@/components/service-worker";
 import "./globals.css";
 
 const siteUrl = process.env.VERCEL_PROJECT_PRODUCTION_URL
@@ -31,7 +32,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <link rel="preload" href="/fonts/inter-latin.woff2" as="font" type="font/woff2" crossOrigin="" />
         <link rel="preload" href="/fonts/sora-latin.woff2" as="font" type="font/woff2" crossOrigin="" />
       </head>
-      <body>{children}</body>
+      <body>
+        {children}
+        <ServiceWorker />
+      </body>
     </html>
   );
 }
